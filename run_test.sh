@@ -5,7 +5,8 @@ source controll_genymotion.sh
 stop_all_genymotion
 
 # clean test results
-rm -f test.json
+rm -rf test.json
+rm -rf rerun.txt
 # clean up Calabash test servers
 rm -rf test_servers
 
@@ -29,4 +30,4 @@ adb -s $SERIAL uninstall $PNAME
 adb -s $SERIAL shell input keyevent 82
 
 # run tests
-ADB_DEVICE_ARG="$SERIAL" calabash-android run "$APK_PATH" --format json -o test.json
+ADB_DEVICE_ARG="$SERIAL" calabash-android run "$APK_PATH" --format json --out test.json --format rerun --out rerun.txt "$MORE_PARAMS"

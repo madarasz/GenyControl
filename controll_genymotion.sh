@@ -4,10 +4,18 @@
 WAITTIME=3
 # maximum attempts when waiting for device
 MAXWAITS=20
+# if you want colors on output
+if [[ $COLORS == "yes" ]]
+then
+  red='\x1B[0;31m'
+  green='\x1B[0;32m'
+  yellow='\x1B[0;33m'
+  nocolor='\x1B[0m'
+fi
 
 # shuts down all Genymotion simulators, DO NOT USE if you have other VMs running as well
 stop_all_genymotion() {
-  echo "*** Stopping all Genymotion simulators."
+  echo "${yellow}*** Stopping all Genymotion simulators.${nocolor}"
 
   # send poweroff command to VMs
   MACHINES="$(get_running_genymotion_names)"
@@ -72,7 +80,7 @@ get_genymotions_running() {
           wait_for_boot "$line"
           sleep 5 # just in case
         else
-          echo "*** Device was already running: $line"
+          echo "${green}*** Device was already running: $line ${nocolor}"
       fi
   done <<< "$1"
 }
@@ -111,16 +119,16 @@ wait_for_boot() {
       # check if we waited long enough to give up
       if [ "$i" -eq "$MAXWAITS" ]
         then
-        echo "*** Giving up on device: $1"
+        echo "${red}*** Giving up on device: $1 ${nocolor}"
         return 1
       fi
 
-      echo "... Waiting for device to boot: $1"
+      echo "${yellow}... Waiting for device to boot: $1 ${nocolor}"
       sleep $WAITTIME
       ((i++))
   done
 
-  echo "*** Device is operational: $1"
+  echo "${green}*** Device is operational: $1 ${nocolor}"
 }
 
 # check that Genymotion VM player is on path
