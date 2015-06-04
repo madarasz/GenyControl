@@ -36,6 +36,7 @@ More commands are avaiable, look up **control_genymotion.sh**.
 * **$PNAME**: Package name of the application to be tested
 * **$APK_PATH**: Path+filename of the apk to be tested
 * **$MORE_PARAMS**: Additional paramaters to be used in the Calabash run command (i.e. *--tags @smoke*)
+* **$COLORS**: set it to "yes" if you want to have ANSI color codes in the output (making it prettier if your terminal supports such)
 
 ### Dependencies
 Your **$PATH** environment variable should include directories for:
