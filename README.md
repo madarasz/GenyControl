@@ -5,9 +5,9 @@ Shell scripts for controlling Genymotion simulators
 Starting and stopping Genymotion simulators safely and effectively from command line. This makes it ideal for continuos integration systems (i.e. Jenkins).
 
 ### How to use
-Include **controll_genymotion.sh** in your bash script to access methods.
+Include **control_genymotion.sh** in your bash script to access methods.
 ```sh
-$ source controll_genymotion.sh
+$ source control_genymotion.sh
 ```
 
 Stop all running Genymotion simulators
@@ -29,9 +29,13 @@ $ get_genymotions_running "Samsung Galaxy S5 - 4.4.4 - API 19 - 1080x1920"
 $ get_genymotions_running "`get_all_genymotion_names`"
 ```
 
-More commands are avaiable, look up **controll_genymotion.sh**.
+More commands are avaiable, look up **control_genymotion.sh**.
 
-**run_test.sh** contains an example script for running Calabash tests in a continuos integration system.
+**run_test.sh** contains an example script for running Calabash tests in a continuos integration system. Use the following environment variables for setup:
+* **$DEVICE**: Device name of requested Genymotion simulator
+* **$PNAME**: Package name of the application to be tested
+* **$APK_PATH**: Path+filename of the apk to be tested
+* **$MORE_PARAMS**: Additional paramaters to be used in the Calabash run command (i.e. *--tags @smoke*)
 
 ### Dependencies
 Your **$PATH** environment variable should include directories for:
